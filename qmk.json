@@ -1,6 +1,11 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        ["keebio/iris/rev6", "davidpratt512"]
+        ["keebio/iris/rev6", "davidpratt512"],
+        ["boardsource/unicorne", "davidpratt512"],
+        ["gmmk/pro/rev1/ansi", "davidpratt512"],
+        ["kbdfans/niu_mini", "davidpratt512"],
+        ["pauperboards/brick", "davidpratt512"],
+        ["planck/rev6", "davidpratt512"]
     ]
 }
