@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_MISC] = LAYOUT_planck_grid(
         KC_TRNS, QK_BOOT, LQWERTY, LCOLEMA, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, RGB_HUI, RGB_SAI, RGB_VAI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, UG_HUEU, UG_SATU, UG_VALU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_PWR,  KC_SLEP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     ),
@@ -219,28 +219,27 @@ combo_t key_combos[] = {
 /* --------------------------------- Key Overrides --------------------------------- */
 
 const key_override_t comma_paren_override = ko_make_with_layers(
-        MOD_MASK_SHIFT,  /* When shift is active            */
-        KC_COMM,         /* and KC_COMM is pressed          */
-        KC_LPRN,         /* replace the result with KC_LPRN */
-        1 << _QWERTY     /* on these layers.                */
+    MOD_MASK_SHIFT,  /* When shift is active   */
+    KC_COMM,         /* and KC_COMM is pressed */
+    KC_LPRN,         /* send KC_LPRN           */
+    1 << _QWERTY    /* only on these layers   */
 );
 
 const key_override_t dot_paren_override = ko_make_with_layers(
-        MOD_MASK_SHIFT,  /* When shift is active            */
-        KC_DOT,          /* and KC_DOT is pressed           */
-        KC_RPRN,         /* replace the result with KC_RPRN */
-        1 << _QWERTY     /* on these layers.                */
+    MOD_MASK_SHIFT,  /* When shift is active  */
+    KC_DOT,          /* and KC_DOT is pressed */
+    KC_RPRN,         /* send KC_RPRN          */
+    1 << _QWERTY    /* only on these layers  */
 );
 
 const key_override_t colon_semicolon_override = ko_make_basic(
-        MOD_MASK_SHIFT,  /* When shift is active            */
-        KC_COLN,         /* and KC_COLN is pressed          */
-        KC_SCLN          /* replace the result with KC_SCLN */
+    MOD_MASK_SHIFT,  /* When shift is active   */
+    KC_COLN,         /* and KC_COLN is pressed */
+    KC_SCLN          /* send KC_SCLN           */
 );
 
-const key_override_t **key_overrides = (const key_override_t *[]) {
-    &comma_paren_override,
-    &dot_paren_override,
-    &colon_semicolon_override,
-    NULL  /* The array must be null-terminated */
+const key_override_t *key_overrides[] = {
+    &comma_paren_override,      /* Use ,/( instead of ,/<  */
+    &dot_paren_override,        /* Use ./) instead of ./>  */
+    &colon_semicolon_override,  /* Use :/; instead of ;/:  */
 };
