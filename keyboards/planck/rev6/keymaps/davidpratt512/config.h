@@ -12,17 +12,17 @@
  * HOLST OP.28 MOVEMENT 1
  * F G A A# C
  */
-#define HOLST_STARTUP H__NOTE(_F3), \
-    H__NOTE(_G3), \
-    H__NOTE(_A3), \
-    H__NOTE(_AS3), \
-    H__NOTE(_C4), \
-    WD_NOTE(_REST), \
-    H__NOTE(_F6), \
-    H__NOTE(_G6), \
-    H__NOTE(_A6), \
-    H__NOTE(_AS6), \
-    H__NOTE(_C7)
+#define HOLST_STARTUP Q__NOTE(_F3), \
+    Q__NOTE(_G3), \
+    Q__NOTE(_A3), \
+    Q__NOTE(_AS3), \
+    Q__NOTE(_C4), \
+    H__NOTE(_REST), \
+    Q__NOTE(_F6), \
+    Q__NOTE(_G6), \
+    Q__NOTE(_A6), \
+    Q__NOTE(_AS6), \
+    Q__NOTE(_C7)
 
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(HOLST_STARTUP)
