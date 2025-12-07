@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_LALT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_RALT,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LGUI, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                               KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_RGUI,
+     KC_LGUI, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                               KC_J,    KC_L,    KC_U,    KC_Y,    KC_COLN, KC_RGUI,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      TAB_CTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                               KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    QUT_CTL,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -150,14 +150,14 @@ const key_override_t comma_paren_override = ko_make_with_layers(
     MOD_MASK_SHIFT,  /* When shift is active   */
     KC_COMM,         /* and KC_COMM is pressed */
     KC_LPRN,         /* send KC_LPRN           */
-    1 << L_QWERTY    /* only on these layers   */
+    1 << L_QWERTY | 1 << L_COLEMAK    /* only on these layers  */
 );
 
 const key_override_t dot_paren_override = ko_make_with_layers(
     MOD_MASK_SHIFT,  /* When shift is active  */
     KC_DOT,          /* and KC_DOT is pressed */
     KC_RPRN,         /* send KC_RPRN          */
-    1 << L_QWERTY    /* only on these layers  */
+    1 << L_QWERTY | 1 << L_COLEMAK    /* only on these layers  */
 );
 
 const key_override_t colon_semicolon_override = ko_make_basic(
