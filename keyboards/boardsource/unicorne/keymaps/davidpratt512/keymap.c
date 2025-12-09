@@ -4,11 +4,12 @@ enum layers {
     L_QWERTY,
     L_LOWER,
     L_RAISE,
-    L_NUMPAD,
 };
 
 enum combos {
     PINKY_CAPS,
+    OPENING_BRACKET,
+    CLOSING_BRACKET,
     COMBO_LENGTH
 };
 
@@ -18,14 +19,10 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 #define QUT_CTL RCTL_T(KC_QUOT)       /* Tap for quote, hold for control       */
 #define LWR_ENT LT(L_LOWER, KC_ENT)   /* Tap for enter, hold for L_LOWER       */
 #define RAIS_BS LT(L_RAISE, KC_BSPC)  /* Tap for bksp, hold for L_RAISE        */
-#define ESC_NUM LT(L_NUMPAD, KC_ESC)  /* Tap for esc, hold for L_NUMPAD        */
 #define GNME_LF G(KC_PGUP)            /* (gnome) Move to prev workspace        */
 #define GNME_RT G(KC_PGDN)            /* (gnome) Move to next workspace        */
 #define GNME_ML G(S(KC_PGUP))         /* (gnome) Move window to prev workspace */
 #define GNME_MR G(S(KC_PGDN))         /* (gnome) Move window to next workspace */
-#define DF_QWER DF(L_QWERTY)          /* Set default layer to L_QWERTY         */
-#define TERM_CP C(S(KC_C))            /* Terminal copy (ctrl + shift + c)      */
-#define TERM_PT C(S(KC_V))            /* Terminal paste (ctrl + shift + v)     */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -37,17 +34,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤             ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┘───┐    ┌────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LALT, ESC_NUM, LWR_ENT,      KC_SPC,  RAIS_BS, KC_RALT
+                                    KC_LALT, KC_ESC,  LWR_ENT,      KC_SPC,  RAIS_BS, KC_RALT
   //                               └────────┴────────┴────────┘    └────────┴────────┴────────┘
   ),
 
   [L_LOWER] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐             ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______,               KC_MINS, KC_PLUS, KC_LBRC, KC_RBRC, _______, _______,
+     _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤             ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______,               KC_UNDS, KC_EQL,  KC_LCBR, KC_RCBR, _______, _______,
+     _______, KC_PLUS, KC_ASTR, KC_AMPR, KC_PIPE, KC_DLR,                KC_AT,   KC_EQL,  KC_LCBR, KC_RCBR, KC_EXLM, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤             ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,               _______, KC_PIPE, KC_LABK, KC_RABK, KC_BSLS, _______,
+     _______, KC_CIRC, KC_GRV,  KC_TILD, KC_UNDS, KC_PERC,               KC_HASH, KC_MINS, KC_LABK, KC_RABK, KC_BSLS, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┐    ┌────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,      _______, KC_DEL,  _______
   //                               └────────┴────────┴────────┘    └────────┴────────┴────────┘
@@ -55,25 +52,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_RAISE] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐             ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  _______,               GNME_ML, GNME_LF, GNME_RT, GNME_MR, _______, QK_BOOT,
+     _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______,               GNME_ML, GNME_LF, GNME_RT, GNME_MR, _______, QK_BOOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┤             ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, _______,               KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+     _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______,               KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤             ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, KC_GRV,  KC_TILD, _______,               KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
+     _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,               KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┐    ┌────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,      _______, _______, _______
-  //                               └────────┴────────┴────────┘    └────────┴────────┴────────┘
-  ),
-
-  [L_NUMPAD] = LAYOUT(
-  //┌────────┬────────┬────────┬────────┬────────┬────────┐             ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,               _______, KC_7,    KC_8,    KC_9,    _______, _______,
-  //├────────┼────────┼────────┼────────┼────────┼────────┤             ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH, _______,               _______, KC_4,    KC_5,    KC_6,    _______, _______,
-  //├────────┼────────┼────────┼────────┼────────┼────────┤             ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______,               _______, KC_1,    KC_2,    KC_3,    _______, _______,
-  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┐    ┌────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, _______,      _______, KC_0,    _______
   //                               └────────┴────────┴────────┘    └────────┴────────┴────────┘
   ),
 
@@ -98,11 +83,19 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 }
 
 const uint16_t PROGMEM pinky_caps_combo[] = { KC_LSFT, KC_RSFT, COMBO_END };
+const uint16_t PROGMEM opening_bracket_combo[] = { KC_D, KC_K, COMBO_END };
+const uint16_t PROGMEM closing_bracket_combo[] = { KC_F, KC_J, COMBO_END };
 
 combo_t key_combos[] = {
 
     /* Tap both shift keys to toggle caps lock */
     [PINKY_CAPS] = COMBO(pinky_caps_combo, KC_CAPS),
+
+    /* Tap middle fingers for opening bracket */
+    [OPENING_BRACKET] = COMBO(opening_bracket_combo, KC_LBRC),
+
+    /* Tap index fingers for closing bracket */
+    [CLOSING_BRACKET] = COMBO(closing_bracket_combo, KC_RBRC),
 
 };
 
