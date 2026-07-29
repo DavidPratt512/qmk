@@ -35,6 +35,7 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 #define TERM_PT C(S(KC_V))            /* Terminal paste (ctrl + shift + v)           */
 #define MAC_CP  G(KC_C)               /* (mac) copy (cmd + c)                        */
 #define MAC_PT  G(KC_V)               /* (mac) paste (cmd + v)                       */
+#define MAC_SS  G(S(KC_4))            /* (mac) screenshot selection (cmd + shift + 4)*/
 #define AWM_PRV G(KC_ESC)             /* (awesome) Return to previous tags           */
 #define AERO_PV A(KC_TAB)             /* (aerospace) Workspace back-and-forth        */
 #define AERO_LF A(KC_H)               /* (aerospace) Focus left                      */
@@ -111,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, KC_GRV,  KC_TILD, _______, KC_PSCR,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
+     _______, _______, _______, KC_GRV,  KC_TILD, _______, MAC_SS,           _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, AERO_PV, _______,                   _______, _______, _______
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
