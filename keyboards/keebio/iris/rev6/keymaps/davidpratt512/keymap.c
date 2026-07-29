@@ -37,6 +37,10 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 #define MAC_PT  G(KC_V)               /* (mac) paste (cmd + v)                       */
 #define AWM_PRV G(KC_ESC)             /* (awesome) Return to previous tags           */
 #define AERO_PV A(KC_TAB)             /* (aerospace) Workspace back-and-forth        */
+#define AERO_LF A(KC_H)               /* (aerospace) Focus left                      */
+#define AERO_RT A(KC_L)               /* (aerospace) Focus right                     */
+#define AERO_ML A(S(KC_H))            /* (aerospace) Move window left                */
+#define AERO_MR A(S(KC_L))            /* (aerospace) Move window right               */
 #define AWMT(N) G(C(KC_##N))          /* (awesome) Toggle tag #N                     */
 
 /* ------------------------------------- Layers ------------------------------------ */
@@ -103,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______, A(KC_1), A(KC_2), A(KC_3), A(KC_4), A(KC_5),                            A(KC_6), A(KC_7), A(KC_8), A(KC_9), _______, QK_BOOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  _______,                            _______, _______, _______, _______, _______, _______,
+     _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  _______,                            AERO_ML, AERO_LF, AERO_RT, AERO_MR, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
