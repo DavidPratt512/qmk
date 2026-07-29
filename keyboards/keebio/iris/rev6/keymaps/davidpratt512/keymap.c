@@ -5,9 +5,10 @@
 
 enum layers {
     L_QWERTY,
-    L_COLEMAK,
+    L_MAC,
     L_LOWER,
     L_RAISE,
+    L_RAISE_MAC,
     L_NUMPAD,
 };
 
@@ -22,16 +23,20 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 #define QUT_CTL RCTL_T(KC_QUOT)       /* Tap for quote, hold for control             */
 #define LWR_ENT LT(L_LOWER, KC_ENT)   /* Tap for enter, hold for L_LOWER             */
 #define RAIS_BS LT(L_RAISE, KC_BSPC)  /* Tap for bksp, hold for L_RAISE              */
+#define MRAI_BS LT(L_RAISE_MAC, KC_BSPC) /* Tap for bksp, hold for L_RAISE_MAC       */
 #define ESC_NUM LT(L_NUMPAD, KC_ESC)  /* Tap for esc, hold for L_NUMPAD              */
-#define DF_QWR  DF(L_QWERTY)          /* Set default layer to QWERTY                 */
-#define DF_COL  DF(L_COLEMAK)         /* Set default layer to Colemak                */
+#define PDF_LNX PDF(L_QWERTY)         /* Persistently set default layer to linux    */
+#define PDF_MAC PDF(L_MAC)            /* Persistently set default layer to mac      */
 #define GNME_LF G(KC_PGUP)            /* (gnome) Move to prev workspace              */
 #define GNME_RT G(KC_PGDN)            /* (gnome) Move to next workspace              */
 #define GNME_ML G(S(KC_PGUP))         /* (gnome) Move window to prev workspace       */
 #define GNME_MR G(S(KC_PGDN))         /* (gnome) Move window to next workspace       */
 #define TERM_CP C(S(KC_C))            /* Terminal copy (ctrl + shift + c)            */
 #define TERM_PT C(S(KC_V))            /* Terminal paste (ctrl + shift + v)           */
+#define MAC_CP  G(KC_C)               /* (mac) copy (cmd + c)                        */
+#define MAC_PT  G(KC_V)               /* (mac) paste (cmd + v)                       */
 #define AWM_PRV G(KC_ESC)             /* (awesome) Return to previous tags           */
+#define AERO_PV A(KC_TAB)             /* (aerospace) Workspace back-and-forth        */
 #define AWMT(N) G(C(KC_##N))          /* (awesome) Toggle tag #N                     */
 
 /* ------------------------------------- Layers ------------------------------------ */
@@ -52,17 +57,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
-  [L_COLEMAK] = LAYOUT(
+  [L_MAC] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_LALT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_RALT,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LGUI, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                               KC_J,    KC_L,    KC_U,    KC_Y,    KC_COLN, KC_RGUI,
+     KC_LGUI, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_RGUI,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     TAB_CTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                               KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    QUT_CTL,
+     TAB_CTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_COLN, QUT_CTL,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_VOLD,          KC_VOLU, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_VOLD,          KC_VOLU, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    TERM_CP, ESC_NUM, LWR_ENT,                   KC_SPC,  RAIS_BS, TERM_PT
+                                    MAC_CP,  ESC_NUM, LWR_ENT,                   KC_SPC,  MRAI_BS, MAC_PT
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -94,6 +99,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
+  [L_RAISE_MAC] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     _______, A(KC_1), A(KC_2), A(KC_3), A(KC_4), A(KC_5),                            A(KC_6), A(KC_7), A(KC_8), A(KC_9), _______, QK_BOOT,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  _______,                            _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______, KC_GRV,  KC_TILD, _______, KC_PSCR,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                    _______, AERO_PV, _______,                   _______, _______, _______
+  //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+  ),
+
   [L_NUMPAD] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______, AWMT(1), AWMT(2), AWMT(3), AWMT(4), AWMT(5),                            AWMT(6), AWMT(7), AWMT(8), AWMT(9), _______, _______,
@@ -102,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH, _______,                            _______, KC_4,    KC_5,    KC_6,    _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______, DF_QWR,           DF_COL,  _______, KC_1,    KC_2,    KC_3,    _______, _______,
+     _______, _______, _______, _______, _______, _______, PDF_LNX,          PDF_MAC, _______, KC_1,    KC_2,    KC_3,    _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, KC_0,    _______
   //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -125,6 +144,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case TAB_CTL:
         case LWR_ENT:
         case RAIS_BS:
+        case MRAI_BS:
             return true;
         default:
             return false;
@@ -150,14 +170,14 @@ const key_override_t comma_paren_override = ko_make_with_layers(
     MOD_MASK_SHIFT,  /* When shift is active   */
     KC_COMM,         /* and KC_COMM is pressed */
     KC_LPRN,         /* send KC_LPRN           */
-    1 << L_QWERTY | 1 << L_COLEMAK    /* only on these layers  */
+    1 << L_QWERTY | 1 << L_MAC        /* only on these layers  */
 );
 
 const key_override_t dot_paren_override = ko_make_with_layers(
     MOD_MASK_SHIFT,  /* When shift is active  */
     KC_DOT,          /* and KC_DOT is pressed */
     KC_RPRN,         /* send KC_RPRN          */
-    1 << L_QWERTY | 1 << L_COLEMAK    /* only on these layers  */
+    1 << L_QWERTY | 1 << L_MAC        /* only on these layers  */
 );
 
 const key_override_t colon_semicolon_override = ko_make_basic(
