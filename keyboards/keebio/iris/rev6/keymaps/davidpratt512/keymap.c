@@ -35,7 +35,7 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 #define TERM_PT C(S(KC_V))            /* Terminal paste (ctrl + shift + v)           */
 #define MAC_CP  G(KC_C)               /* (mac) copy (cmd + c)                        */
 #define MAC_PT  G(KC_V)               /* (mac) paste (cmd + v)                       */
-#define MAC_SS  G(S(KC_4))            /* (mac) screenshot selection (cmd + shift + 4)*/
+#define MAC_SS  KC_F13                /* (mac) screenshot with aerospace             */
 #define AWM_PRV G(KC_ESC)             /* (awesome) Return to previous tags           */
 #define AERO_PV A(KC_TAB)             /* (aerospace) Workspace back-and-forth        */
 #define AERO_LF A(KC_H)               /* (aerospace) Focus left                      */
